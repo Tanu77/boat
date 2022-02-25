@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="nav bar.css">
+</head>
+<script
+    src="https://kit.fontawesome.com/511a6cb386.js"
+    crossorigin="anonymous">
+</script>
+<body style="background-color: black;" >
+    <div>
+        <div class="bar1">10% OFF upto Rs.500 using Pay with Rewards</div>
+        <div class="nav">
+          <div class="brand-logo">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Boat-Logo_200x_137f5a28-b960-4963-b1fd-e91c60e436a9_200x.png?v=1640587883"
+              height="80%"
+              width="80%"
+            />
+          </div>
+          <div style="display: flex; align-items: center">
+            <ul style="display: flex; align-items: center; list-style-type: none">
+              <li>
+                <a href="#/" 
+                  ><button class="shop" >shop</button></a
+                >
+              </li>
+              <li><a href="#news" class="sidebor">boAt x Sunburn</a></li>
+              <li><a href="#contact" class="sidebor">Daily deals</a></li>
+              <li>
+                <a href="#about" class="sidebor"
+                  ><select class="shop">
+                    <option>More</option>
+                    <option>Gifting</option>
+                    <option>Offer Zone</option>
+                    <option>Float your boAt</option>
+                    <option>Meet the boAtheads</option>
+                    <option>Earn Rs.100</option>
+                  </select>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="class1">
+            <button type="submit" class="search-button">
+              <i class="fa fa-search search-icon"></i>
+            </button>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search.."
+              name="search2"
+            />
+          </div>
+          <div class="class2">
+            <div class="profileicon">
+              <a href="#"><i class="fa fa-gift"></i></a>
+              <a href="../singnin/signin.html"><i class="far fa-user"></i></a>
+              <a href="../cart/cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    <div class="checkout1" style="border: 1px solid white;">
+        
+        <h1>CHECKOUT</h1>
+        <div id="pricetabflex">
+            <div>
+                <div class="delivery">
+                    <div class="deliveryheading"><h2>1.DELIVERY OPTION</h2></div><br>
+                    <div class="flexing">
+                        <div>
+                            <input type="radio" id="ship" name="drone" value="Ship To Address" checked>
+                            <p>Ship To Address</p>
+                            <p class="ship">Shipping: <span>$100</span></p>
+                        </div>
+                        <div>
+                            <input type="radio" id="collect" name="drone" value="Click & Collect">
+                            <p>Click & Collect</p>
+                            <p class="delivery12">Shipping: <span>FREE</span></p>
+                            <p class="delivery123">Note - Please wait for delivery email (about 2-10 days)<br> before visiting store.</p>
+                        </div>   
+                    </div>
+                    <hr><br><br>
+                    <div class="flexing">
+                        <div>
+                            <p>chantati Tanmayi</p>
+                            <p>(Membership address)</p>
+                        </div>
+                        <div>
+                            <p>Mohan Garden, Uttam Nagar New <br>Delhi-59, West Delhi, <br>Delhi-110059 <br>7011591529
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="flexing1">
+                        <div>
+                            <a href="../payment/payment.html"><button id="paymentbtn">CONTINUE TO PAYMENT</button></a>
+                        </div>
+                        <div>
+                            <button id="newaddressbtn">
+                                REGISTER A NEW ADDDRESS
+                            </button>
+                        </div>
+                    </div><br><br>
+                
+                </div>
+            </div>
+            <div class="checkoutpart" style="border: 1px solid white;">
+                <div class="checkoutpart0">
+                    <div><h3>ORDER SUMMARY | ITEM(S) : </h3></div>
+                    <div id="totalitsms"></div>
+                </div><br>
+                <div class="checkoutpart1">
+                    <div>Item(s) subtotal</div>
+                    <div id="totalprice1"></div>
+                </div><br>
+                <div class="checkoutpart2">
+                    <div>Shipping</div>
+                    <div>Rs 100</div>
+                </div><br>
+                <div class="checkoutpart3">
+                    <div><h3>ORDER TOTAL</h3></div>
+                    <div id="totalpriceshipping"></div>
+                </div>
+                    <div><p>(inclusive of all taxes)</p></div>
+            </div>
+        </div>
+    </div>
+    <script src="checkout.js"></script>
+</body>
+</html>

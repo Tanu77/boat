@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="payment.css" />
+    <link rel="stylesheet" href="nav bar.css" />
+  </head>
+  <script
+    src="https://kit.fontawesome.com/511a6cb386.js"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <div>
+        <div class="bar1">10% OFF upto Rs.500 using Pay with Rewards</div>
+        <div class="nav">
+          <div class="brand-logo">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Boat-Logo_200x_137f5a28-b960-4963-b1fd-e91c60e436a9_200x.png?v=1640587883"
+              height="80%"
+              width="80%"
+            />
+          </div>
+          <div style="display: flex; align-items: center">
+            <ul style="display: flex; align-items: center; list-style-type: none">
+              <li>
+                <a href="#/" 
+                  ><button class="shop" >shop</button></a
+                >
+              </li>
+              <li><a href="#news" class="sidebor">boAt x Sunburn</a></li>
+              <li><a href="#contact" class="sidebor">Daily deals</a></li>
+              <li>
+                <a href="#about" class="sidebor"
+                  ><select class="shop">
+                    <option>More</option>
+                    <option>Gifting</option>
+                    <option>Offer Zone</option>
+                    <option>Float your boAt</option>
+                    <option>Meet the boAtheads</option>
+                    <option>Earn Rs.100</option>
+                  </select>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="class1">
+            <button type="submit" class="search-button">
+              <i class="fa fa-search search-icon"></i>
+            </button>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search.."
+              name="search2"
+            />
+          </div>
+          <div class="class2">
+            <div class="profileicon">
+              <a href="#"><i class="fa fa-gift"></i></a>
+              <a href="../singnin/signin.html"><i class="far fa-user"></i></a>
+              <a href="../cart/cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="paymentpage">
+      <div>
+        <h2>2.PAYMENT OPTION</h2>
+        <p style="margin-top: 5px;">Please select your payment option</p>
+        <hr />
+        <div class="cardselect" >
+          <div >
+            <div><input type="radio" name="drone" checked /></div>
+            <div >Credit/Debit Card</div>
+          </div>
+          <div>
+            <div><input type="radio" name="drone" /></div>
+            <div>NetBanking</div>
+          </div>
+          <div>
+            <div><input type="radio" name="drone" /></div>
+            <div>UPI</div>
+          </div>
+        </div>
+        <hr />
+        <h2 style="margin-top: 5px;">REGISTER NEW CARD</h2>
+        <p style="margin-top: 5px;">
+          In case you encounter an issue with your credit/ debit card payment,
+          please contact customer care for further support.
+        </p>
+
+        <div class="cardnumber1">
+          <label class="cardlabel1" for="">CARD NUMBER</label>
+          <input class="input1" type="text" />
+        </div>
+        <br />
+        <div class="cardnumber1">
+          <label class="cardlabel1" for="">EXPIRATION DATE</label>
+          <input class="input1" type="text" placeholder="MM/YY" />
+        </div>
+        <br />
+        <div class="cardnumber1">
+          <label class="cardlabel1" for="">SECURITY CODE</label>
+          <input class="input1" type="text" placeholder="3 digits" />
+        </div>
+        <br />
+        <div class="cardnumber1">
+          <label class="cardlabel1" for="">FULL NAME</label>
+          <input class="input1" type="text" />
+        </div>
+        <br /><br />
+        <div class="checkbox1">
+          <input id="check1" type="checkbox" />
+          <p id="check" style="display: inline-block;">Save or update card information</p>
+        </div>
+        <br />
+        <div style="width: 100%; display: flex; justify-content: center;margin-bottom: 10px;">
+          <a href="../ordersummary/order summary.html"
+            ><button id="continue">CONTINUE</button></a
+          >
+        </div>
+      </div>
+      <div>
+        <div class="checkoutpart">
+          <div class="checkoutpart0">
+            <div><h3>ORDER SUMMARY | ITEM(S)</h3></div>
+            <div id="totalitsms"></div>
+          </div>
+          <br />
+          <div class="checkoutpart1">
+            <div>Item(s) subtotal</div>
+            <div id="totalprice1"></div>
+          </div>
+          <br />
+          <div class="checkoutpart2">
+            <div>Shipping</div>
+            <div>Rs 100</div>
+          </div>
+          <br />
+          <div class="checkoutpart3">
+            <div><h3>ORDER TOTAL</h3></div>
+            <div id="totalpriceshipping"></div>
+          </div>
+          <div><p>(inclusive of all taxes)</p></div>
+        </div>
+      </div>
+    </div>
+    <script src="payment.js"></script>
+  </body>
+</html>

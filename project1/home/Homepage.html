@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Slider using Flickity Plugin | HackerRahul.com</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/511a6cb386.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .flickity-enabled {
+  position: relative;
+}
+.flickity-enabled:focus {
+  outline: 0;
+}
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+.flickity-button {
+  position: absolute;
+  background: hsla(0, 0%, 100%, 0.75);
+  border: none;
+  color: #333;
+}
+.flickity-button:hover {
+  background: #fff;
+  cursor: pointer;
+}
+.flickity-button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 5px #19f;
+}
+.flickity-button:active {
+  opacity: 0.6;
+}
+.flickity-button:disabled {
+  opacity: 0.3;
+  cursor: auto;
+  pointer-events: none;
+}
+.flickity-button-icon {
+  fill: currentColor;
+}
+.flickity-prev-next-button {
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.flickity-prev-next-button.previous {
+  left: 10px;
+}
+.flickity-prev-next-button.next {
+  right: 10px;
+}
+.flickity-rtl .flickity-prev-next-button.previous {
+  left: auto;
+  right: 10px;
+}
+.flickity-rtl .flickity-prev-next-button.next {
+  right: auto;
+  left: 10px;
+}
+.flickity-prev-next-button .flickity-button-icon {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+}
+.flickity-page-dots {
+  position: absolute;
+  width: 100%;
+  bottom: -25px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  line-height: 1;
+}
+.flickity-rtl .flickity-page-dots {
+  direction: rtl;
+}
+.flickity-page-dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 8px;
+  background: #333;
+  border-radius: 50%;
+  opacity: 0.25;
+  cursor: pointer;
+}
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .nav {
+      /* border: 1px solid white; */
+      display: flex;
+      justify-content: space-between;
+      /* position: relative; */
+
+      background-color: rgb(7, 7, 7);
+      color: white;
+      height: 80px;
+    }
+    .bar1 {
+      
+      height: 25px;
+      width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;
+    }
+    .brand-logo {
+      /* border: 1px solid white; */
+      height: 80%;
+      width: 10%;
+      margin-left: 5%;
+      margin-top: 1%;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+    .shop {
+      background-color: black;
+      border: black;
+      color: white;
+      cursor: pointer;
+    }
+    .sidebor {
+      border-left: 2px solid #ff0000;
+      border-left-width: 2px;
+      border-left-style: solid;
+      border-left-color: rgb(255, 0, 0);
+      display: flex;
+      line-height: 1px;
+    }
+    .class1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-grow: 2;
+      /* height: 40%;
+      width: 18%;
+      margin-top: 30px;
+      margin-right: 150px;
+      margin-left: 5px; */
+    }
+    /* form.example input[type="text"] {
+      padding: 10px;
+      font-size: 7px;
+      border: 1px solid black;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      height: 100%;
+    } */
+
+    .search-input {
+      padding: 10px;
+      font-size: 7px;
+      border: 1px solid black;
+      float: left;
+      /* width: 80%; */
+      background: #f1f1f1;
+      outline: none;
+      border-left: none;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    ::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+    /* form.example button {
+      width: 15%;
+      padding: 4px;
+      height: 100%;
+      background: white;
+      color: black;
+      font-size: 5px;
+      border: 1px solid black;
+      border-left: none;
+      cursor: pointer solid black;
+    } */
+
+    .search-button {
+      /* width: 15%; */
+      padding: 5px;
+      background: white;
+      color: black;
+      font-size: 5px;
+      border: 1px solid black;
+      border-right: none;
+      cursor: pointer;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .search-icon {
+      font-size: 19px;
+    }
+
+    form.example button:hover {
+      background: white;
+    }
+
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .class2 {
+      display: flex;
+      align-items: center;
+      flex-grow: 2;
+      justify-content: center;
+      /* border: 1px solid white; */
+      /* height: 40%;
+      width: 5%;
+      margin-top: 30px;
+      margin-right: 5px; */
+    }
+    .profileicon a {
+      padding: 5px;
+    }
+    .fasfa-shopping-cart {
+      color: white;
+      height: 15%;
+    }
+    .carousel-cell {
+      width: 100%;
+    }
+
+    /* cell number */
+    .carousel-cell:before {
+      display: block;
+    }
+    .back {
+      background-color: black;
+    }
+    .class3 {
+      
+      /* height: 70px; */
+      width: 100%;
+      color: white;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .class3-1 {
+      
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      /* margin-left: 30px; */
+      padding: 16px;
+      gap: 10px;
+    }
+    .class4 {
+      /* height: 100%; */
+      width: 40%;
+      /* margin-right: 20px; */
+    }
+    .class4-1 {
+      border: 1px solid rgb(255, 255, 255);
+      /* height: 70%; */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #c4c4c4;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .class4-2 {
+      border: 1px solid rgb(255, 255, 255);
+      /* height: 30%; */
+      width: 100%;
+      background-color: white;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 0px 25px 10px 25px;
+    }
+
+    .card-list {
+      list-style: none;
+    }
+
+    .card-list > li::before {
+      content: "■ ";
+      color: red;
+    }
+
+    .add-cart-button {
+      width: 120px;
+      border: none;
+      border-radius: 30px;
+      background: black;
+      color: white;
+      padding: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .class5 {
+      
+      height: 400px;
+      width: 100%;
+      display: flex;
+      margin-left: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .class5-1 {
+      
+      height: 100%;
+      width: 30%;
+    }
+    .class6{
+      
+      height: 400px;
+      width: 100%;
+      background-color: #494949;
+      margin-left: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+
+    }
+    .class6-1{
+      background-color: #111;
+      height: 300px;
+      width: 80%;
+      margin: auto;
+      display: flex;
+      color: #111;
+
+    }
+    .class6-2{
+     
+      height: 70px;
+      width: 80%;
+      margin: auto;
+      color: white;
+      text-align: center;
+      margin-bottom: 10px;
+      
+    }
+    .class7{
+      color: #111;
+      height: 100%;
+      width: 30%;
+      background-color: white;
+    }
+    .class7-1{
+      color: #111;
+      height: 100%;
+      width: 70%;
+      text-align: center;
+      background-color: white;
+      justify-content: center;
+      
+    }
+    .class8{
+      
+      height: 100%;
+      width: 40%;
+      background-color: white;
+    }
+    .class8-1{
+     
+      height: 100%;
+      width: 70%;
+      padding-left: 30px;
+      background-color: #363636;
+      justify-content: center;
+      color: red;
+
+    }
+    *{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    
+}
+.container{
+    background-color: black;
+    width: 100%;
+    margin: auto;
+    display: flex;
+}
+.img{
+  
+    height: 10%;
+    width: 40%;
+}
+.mat{
+
+    height: 10%;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+
+a{
+    text-decoration:none
+}
+   
+.footer{
+    
+    width: 30%;
+    height: 600px;
+    
+    padding: 40px;
+    
+}
+.class19{
+    color: #ccc2bb;
+    width: 70%;
+    height: 600px;
+    display: flex;
+}
+.class1-19{
+
+    width: 30%;
+    height: 600px;
+    margin-right: 40;
+    padding: 20px;
+    line-height: 40px;
+}
+
+.example{
+    display: flex;
+    gap: 20px;
+}
+
+/* Style the search field */
+.example input[type=text] {
+  padding: 10px;
+  border: 1px solid grey;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+.example button {
+  width: 100%;
+  padding: 10px;
+  background:black;
+  color: white;
+  font-size: 10px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: red;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.foottop2{
+    /* border: 1px solid white; */
+    width: 100%;
+    height: 60px;
+    background-color: #2c2c2c;
+    color: #ccc2bb;
+    text-align: center;
+    justify-content: center;
+}
+.foottop1{
+    /* border: 1px solid white; */
+    width: 100%;
+    height: 150px;
+    background-color: #2c2c2c;
+    color: #ccc2bb;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+.foottop1-1{
+    /* border: 1px solid white; */
+    width: 20%;
+    height: 80px;
+    /* height: 100%; */
+    display: flex;
+    justify-content: space-around;
+}
+/* class10{
+ 
+} */
+
+
+    
+
+    
+  </style>
+  <body class="back">
+    <div>
+      <div class="bar1">10% OFF upto Rs.500 using Pay with Rewards</div>
+      <div class="nav">
+        <div class="brand-logo">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Boat-Logo_200x_137f5a28-b960-4963-b1fd-e91c60e436a9_200x.png?v=1640587883"
+            height="80%"
+            width="80%"
+          />
+        </div>
+        <div style="display: flex; align-items: center">
+          <ul style="display: flex; align-items: center; list-style-type: none">
+            <li>
+              <a href="../dummy/dummy.html" 
+                ><button class="shop" >shop</button></a
+              >
+            </li>
+            <li><a href="#news" class="sidebor">boAt x Sunburn</a></li>
+            <li><a href="#contact" class="sidebor">Daily deals</a></li>
+            <li>
+              <a href="#about" class="sidebor"
+                ><select class="shop">
+                  <option>More</option>
+                  <option>Gifting</option>
+                  <option>Offer Zone</option>
+                  <option>Float your boAt</option>
+                  <option>Meet the boAtheads</option>
+                  <option>Earn Rs.100</option>
+                </select>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="class1">
+          <button type="submit" class="search-button">
+            <i class="fa fa-search search-icon"></i>
+          </button>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search.."
+            name="search2"
+          />
+        </div>
+        <div class="class2">
+          <div class="profileicon">
+            <a href="#"><i class="fa fa-gift"></i></a>
+            <a href="../singnin/signin.html"><i class="far fa-user"></i></a>
+            <a href="../cart/cart.html"><i class="fas fa-shopping-cart"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="carousel"
+      data-flickity='{ "wrapAround": true, "autoPlay": true, "imagesLoaded":true }'
+    >
+      <div class="carousel-cell">
+        <img
+          class="w3-image"
+          src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_sunburn_wbanner_1512x.jpg?v=1645258239"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="w3-image"
+          src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1750_wbanner_aeb06726-6b4d-40dc-9f46-2d0ce87a9bf8_1512x.jpg?v=1645440174"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="w3-image"
+          src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/BOB-Web_db63201b-7441-4fd3-ae66-5020c16a2c05_1512x.jpg?v=1645077525"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="w3-image"
+          src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Blaze_wbanner_1_1512x.jpg?v=1645157819"
+        />
+      </div>
+    </div>
+    <div class="class3">
+      <h1>BEST SELLERS</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/cream_540x.png?v=1642405569"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Airdopes 131-Wireless Earbuds</h5>
+          <h3>Rs. 1,299.00</h3>
+          <ul class="card-list">
+            <li>ligth weigth for portability</li>
+            <li>Uninterupted listning for 3 hours</li>
+            <li>Truely wireless at a truely awsome prise</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+          
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main-img-R333_300x.png?v=1641801662"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 333</h5>
+          <h3>Rs. 1,499.00</h3>
+          <ul class="card-list"> 
+            <li>Colour variants for every style </li>
+            <li>Fast Charge in just 15 minutes</li>
+            <li> Ace your workouts with IPX5 rating</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/merucry-3_300x.png?v=1639400858"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Watch Mercury</h5>
+          <h3>Rs. 2,499.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>boAt X Sunburn</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main1_7aa8c6c2-054b-42d5-a701-1e0ac33549c1_300x.png?v=1645014290"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>Airdopes 441 Sunburn Edition</h5>
+          <h3>Rs. 2,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_477b0686-02b2-4289-9e53-d663dfb08e37_300x.png?v=1645016541"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 550 Sunburn Edition</h5>
+          <h3>Rs. 1,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main2_d46d18bd-17a2-417a-af86-9f851bdf7068_300x.png?v=1645083010"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Bassheads 172 Sunburn Edition</h5>
+          <h3>Rs. 549.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>Just Lanched</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main1_affc1a7f-f714-4952-9c58-3de269539350_300x.png?v=1645099233"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>Airdopes 441 Sunburn Edition</h5>
+          <h3>Rs. 2,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_b6563f96-f1a1-4915-b686-d4e37232ec3c_300x.png?v=1644301638"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 550 Sunburn Edition</h5>
+          <h3>Rs. 1,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main3_6370be21-3c2f-48a8-bb18-edc49a667081_300x.png?v=1643619646"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Bassheads 172 Sunburn Edition</h5>
+          <h3>Rs. 549.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>Treading in Earbuds</h1>
+    </div>
+    <div class="class5">
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Trending-Products_new281pro_460x.png?v=1642409218" height="100%" width="100%"/>
+      </div>
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Trending-Products_AD402_v2_460x.png?v=1642408915" height="100%" width="100%"/>
+      </div>
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/621_460x.png?v=1633507618" height="100%" width="100%"/>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>Smart Watches</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/merucry-3_540x.png?v=1639400858"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>Airdopes 441 Sunburn Edition</h5>
+          <h3>Rs. 2,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/main2_529ecf13-c993-4fe7-a2d6-9357f1a47db4_300x.png?v=1645164257"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 550 Sunburn Edition</h5>
+          <h3>Rs. 1,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/e7910a39-186a-41f6-ac57-fc3e84108104_300x.png?v=1625045106"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Bassheads 172 Sunburn Edition</h5>
+          <h3>Rs. 549.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>Top wireless</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/35ca6350-d6f3-4bc2-a742-01b2c88d80c4_300x.png?v=1625552657"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>Airdopes 441 Sunburn Edition</h5>
+          <h3>Rs. 2,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/eb8e0fbd-c412-48b3-9c91-5b49ddf35800_300x.png?v=1625045744"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 550 Sunburn Edition</h5>
+          <h3>Rs. 1,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/5f7d33ad-39a9-4426-836e-c300814839b9_300x.png?v=1625046105"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Bassheads 172 Sunburn Edition</h5>
+          <h3>Rs. 549.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class3">
+      <h1>Top Wired</h1>
+    </div>
+    <div class="class3-1">
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/553af994-244a-4b81-9d9e-9967a1b966b3_300x.png?v=1625046259"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>Airdopes 441 Sunburn Edition</h5>
+          <h3>Rs. 2,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/103_300x.png?v=1574927262"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Rockerz 550 Sunburn Edition</h5>
+          <h3>Rs. 1,999.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+      <div class="class4">
+        <div class="class4-1">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/8ec58553-3255-48ec-929e-4838215b640c_300x.png?v=1625046271"
+            alt=""
+            height="50%"
+            width="50%"
+          />
+        </div>
+        <div class="class4-2">
+          <h5>boAt Bassheads 172 Sunburn Edition</h5>
+          <h3>Rs. 549.00</h3>
+          <ul class="card-list">
+            <li>1.54 inch display </li>
+            <li>Temperature monitoring</li>
+            <li>100+ cloud watch faces</li>
+          </ul>
+          <a href="../product/productpage.html" style="cursor:pointer" ><button class="add-cart-button">Add to Cart</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="class6">
+     <div class="class6-2">
+       <h1>New Launches</h1>
+     </div>
+      <div class="class6-1">
+        <div class="class7">
+          <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/nl-950v2_300x.png?v=1643697611" alt="" height="100%" width="100%">
+        </div>
+        <div class="class7-1">
+          <h3>BASSHEADS 950V2</h3>
+          <p>Experience the bliss of rich bass with BassHeads 950v2 — our all-new wired headphones powered by 40mm Drivers. The Passive Noise Isolation &amp; built-in-mic ensure that you have a seamless calling experience. Groove to unlimited hours of music because #WiredIsBack. What more? It comes in three amazing hues too.</p>
+          <a href="#/" style="cursor:pointer" ><button class="add-cart-button">shop Now</button></a>
+        </div>
+
+      </div>
+      
+    </div>
+    <div class="class5">
+      
+      <div class="class8-1"> 
+        <div>
+          <h1 style="color: red; font-weight: 40px;font-size: 40px;">Meet The BoAtheads</h1>
+          <h3>KARTHIK ARYAN</h3>
+          <h1 style="color: white;">Cool.calm.collected</h1>
+          <h5 style="color: white;">Just the way he swivels his bat and makes gigantic home runs look so easy, our #SoundOfTheChampions star has cleared the boundary on numerous occasions ever since he’s been aboard as a boAthead</h5>
+        </div>
+      </div>
+      <div class="class8">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Kartik_720x.jpg?v=1606303019" height="100%" width="100%"/>
+        
+      </div>
+    </div>
+    <div class="class5">
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Earphone_1296x_386bed9a-346e-4cb5-bad9-c075cc0b170c_460x.jpg?v=1633939293" height="80%" width="80%"/>
+        <p style="color: white;margin-top: 10px;padding: 10px;">Earphones Buying Guide - Everything You Need To Know</p>
+      </div>
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Main-banner_520x500_6852bb3b-c6d3-4588-8df9-2075ffada63a_460x.jpg?v=1639552370" height="80%" width="80%"/>
+        <p style="color: white;margin-top: 10px;padding: 10px">The Ultimate Smartwatch Guide - Get The World On Your Wrist</p>
+      </div>
+      <div class="class5-1">
+        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/articles/BLOG2_460x.jpg?v=1645630699" height="80%" width="80%"/>
+        <p style="color: white;margin-top: 10px;padding: 10px">Your Guide to Watch Blaze: Inside the Anatomy of a Speed Demon</p>
+      </div>
+    </div>
+    <div class="class10">
+      <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Fotter-Awards_11-02-2022_900x.png?v=1644572316" alt="" height="100%" width="100%">
+
+    </div>
+    
+        <div class="foottop1">
+            <div class="foottop1-1">
+                <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/group_186_3x_4616a7a4-8c24-4065-a237-54e3d574bb94.png?v=1611132367" height="100%" width="40%"/>
+                 <h1>Free Delivary</h1>
+            </div>
+            <div class="foottop1-1">
+                <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/vector_3x_50a1233e-95d9-4e18-9e8e-757b545e2c06.png?v=1611132367" height="100%" width="40%"/>
+                 <h1>Exclusive Deals</h1>
+            </div>
+            <div class="foottop1-1">
+                <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/vector_2_2x_9d5071e2-154a-4f06-b660-9d0430a18248.png?v=1611132367" alt="" height="100%" width="40%"/>
+                <h1>Secure checkout</h1>
+            </div>
+        </div>
+        <div class="foottop2">
+            <p>India's fastest growing audio & wearables brand. The most incredible range of wireless earphones, earbuds, headphones, smart watches, and home<br> audio. From workouts to adventures, boAt will get you sailing!</p>
+        </div>
+        <footer class="container">
+            
+                <div class="footer">
+                    <div class="img">
+                        <img class="logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Boat-Logo_200x_137f5a28-b960-4963-b1fd-e91c60e436a9_200x.png?v=1640587883" alt="" height="100%" width="100%" >
+                    </div>
+                    <div class="mat">
+                        <p>subscribe to mail elerts we promise not to spam your inbox</p>
+                    </div>
+                    <div class="example">
+                        <input type="text" placeholder="Email Address*" style="border-radius: 10px;" name="search">
+                        <button type="submit" style="border: 1px solid red;font-size: 14px;">SUBSCRIBE</button>
+                    </div>
+                        
+                      
+                    
+                </div>
+                <div class="class19">
+                    <div class="class1-19">
+                        <div>
+                            <h2>Shop</h2>
+                        </div>
+                        <div>
+                            <a href=""><p>True Wireless Earbuds</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Wireless headphones</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Wired Headphones</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Wireless Speakers</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Home Audio</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Mobile Accessories</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Smart Watches</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>TRebel</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Misfit</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Giftcard</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Rock In India</p></a>
+                        </div>
+                        <div>
+                            <a href=""><p>Earn 100</p></a>
+                        </div>
+                    </div>
+                    <div class="class1-19">
+                        <div>
+                            <div>
+                                <h2>Help</h2>
+                            </div>
+                            <div>
+                                <a href=""><p>Track your order</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Waranty and Support</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Return policy</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Service centers</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Bulk Orders</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>FAQs</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Why Buy Direct</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="class1-19">
+                        <div>
+                            <div>
+                                <h2>Company</h2>
+                            </div>
+                            <div>
+                                <a href=""><p>About Boat</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>News</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Read our blog</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Security</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Terms of Service</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Privacy policy</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Partners Offers T&Cs</p></a>
+                            </div>
+                            <div>
+                                <a href=""><p>Invester Relations</p></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                    
+            
+          </footer>          
+                   
+    </div>
+    
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

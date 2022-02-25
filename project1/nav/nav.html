@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+    src="https://kit.fontawesome.com/511a6cb386.js"
+    crossorigin="anonymous">
+</script>
+  <title>Document</title>
+  <style>
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .nav {
+      /* border: 1px solid white; */
+      display: flex;
+      justify-content: space-between;
+      /* position: relative; */
+
+      background-color: rgb(7, 7, 7);
+      color: white;
+      height: 80px;
+    }
+    .bar1 {
+      border: 1px solid black;
+      height: 25px;
+      width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;
+    }
+    .brand-logo {
+      /* border: 1px solid white; */
+      height: 80%;
+      width: 10%;
+      margin-left: 5%;
+      margin-top: 1%;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+    .shop {
+      background-color: black;
+      border: black;
+      color: white;
+      cursor: pointer;
+    }
+    .sidebor {
+      border-left: 2px solid #ff0000;
+      border-left-width: 2px;
+      border-left-style: solid;
+      border-left-color: rgb(255, 0, 0);
+      display: flex;
+      line-height: 1px;
+    }
+    .class1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-grow: 2;
+      /* height: 40%;
+      width: 18%;
+      margin-top: 30px;
+      margin-right: 150px;
+      margin-left: 5px; */
+    }
+    /* form.example input[type="text"] {
+      padding: 10px;
+      font-size: 7px;
+      border: 1px solid black;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      height: 100%;
+    } */
+
+    .search-input {
+      padding: 10px;
+      font-size: 7px;
+      border: 1px solid black;
+      float: left;
+      /* width: 80%; */
+      background: #f1f1f1;
+      outline: none;
+      border-left: none;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    ::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+    /* form.example button {
+      width: 15%;
+      padding: 4px;
+      height: 100%;
+      background: white;
+      color: black;
+      font-size: 5px;
+      border: 1px solid black;
+      border-left: none;
+      cursor: pointer solid black;
+    } */
+
+    .search-button {
+      /* width: 15%; */
+      padding: 5px;
+      background: white;
+      color: black;
+      font-size: 5px;
+      border: 1px solid black;
+      border-right: none;
+      cursor: pointer;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .search-icon {
+      font-size: 19px;
+    }
+
+    form.example button:hover {
+      background: white;
+    }
+
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .class2 {
+      display: flex;
+      align-items: center;
+      flex-grow: 2;
+      justify-content: center;
+      /* border: 1px solid white; */
+      /* height: 40%;
+      width: 5%;
+      margin-top: 30px;
+      margin-right: 5px; */
+    }
+    .profileicon a {
+      padding: 5px;
+    }
+    .fasfa-shopping-cart {
+      color: white;
+      height: 15%;
+    }
+    .carousel-cell {
+      width: 100%;
+    }
+
+    /* cell number */
+    .carousel-cell:before {
+      display: block;
+    }
+        
+  </style>
+</head>
+<body>
+  <div>
+    <div class="bar1">10% OFF upto Rs.500 using Pay with Rewards</div>
+    <div class="nav">
+      <div class="brand-logo">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Boat-Logo_200x_137f5a28-b960-4963-b1fd-e91c60e436a9_200x.png?v=1640587883"
+          height="80%"
+          width="80%"
+        />
+      </div>
+      <div style="display: flex; align-items: center">
+        <ul style="display: flex; align-items: center; list-style-type: none">
+          <li>
+            <a href="#/" 
+              ><button class="shop" >shop</button></a
+            >
+          </li>
+          <li><a href="#news" class="sidebor">boAt x Sunburn</a></li>
+          <li><a href="#contact" class="sidebor">Daily deals</a></li>
+          <li>
+            <a href="#about" class="sidebor"
+              ><select class="shop">
+                <option>More</option>
+                <option>Gifting</option>
+                <option>Offer Zone</option>
+                <option>Float your boAt</option>
+                <option>Meet the boAtheads</option>
+                <option>Earn Rs.100</option>
+              </select>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="class1">
+        <button type="submit" class="search-button">
+          <i class="fa fa-search search-icon"></i>
+        </button>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search.."
+          name="search2"
+        />
+      </div>
+      <div class="class2">
+        <div class="profileicon">
+          <a href="#"><i class="fa fa-gift"></i></a>
+          <a href="../singnin/signin.html"><i class="far fa-user"></i></a>
+          <a href="../cart/cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
